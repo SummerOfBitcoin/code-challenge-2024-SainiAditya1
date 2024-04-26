@@ -3,6 +3,23 @@ import json
 import hashlib
 import re
 
+
+
+import os
+import hashlib
+
+def generate_block_header():
+    version = (1).to_bytes(4, 'little')
+    previous_block_hash = os.urandom(32)
+    merkle_root = os.urandom(32)
+    timestamp = (1622647567).to_bytes(4, 'little')
+    bits = (0x1d00ffff).to_bytes(4, 'little')
+    nonce = (0).to_bytes(4, 'little')
+    return version + previous_block_hash + merkle_root + timestamp + bits + nonce
+
+block_header = generate_block_header()
+assert len(block_header) == 80, "Invalid header length"
+
 # Set the difficulty target
 difficulty_target = '0000ffff00000000000000000000000000000000000000000000000000000000'
 
