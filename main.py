@@ -4,10 +4,6 @@ import hashlib
 import re
 
 
-
-import os
-import hashlib
-
 def generate_block_header():
     version = (1).to_bytes(4, 'little')
     previous_block_hash = os.urandom(32)
